@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class Main {
 
@@ -9,7 +12,8 @@ public class Main {
         }
 
         long startTs = System.currentTimeMillis(); // start time
-        List<Thread> threads = new ArrayList<>();
+        ExecutorService executorService = Executors.newFixedThreadPool(10);
+        List<Future<Thread>> threads = new ArrayList<>();
 
         for (String text : texts) {
             threads.add(new Thread(() -> {
